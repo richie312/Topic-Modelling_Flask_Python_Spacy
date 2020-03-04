@@ -1,0 +1,11 @@
+@app.route('/test')
+def chartTest():
+  lnprice=np.log(price)
+  plt.plot(lnprice)   
+  plt.savefig('/static/images/new_plot.png')
+  return render_template('untitled1.html', name = 'new_plot', url ='/static/images/new_plot.png')
+Then, in untitled1.html:
+
+  <p>{{ name }}</p>
+
+  <img src={{ url}} alt="Chart" height="42" width="42">
