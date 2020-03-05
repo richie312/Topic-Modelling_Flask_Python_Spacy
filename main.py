@@ -19,17 +19,29 @@ def get_plot():
     data = request.form
     url = data['url']
     print(url)
-    output = get_topics(url)
-    lda_model = output[0]
-    doc_list = output[1]
+    try:
+        output = get_topics(url)
+        lda_model = output[0]
+        doc_list = output[1]
+    except ValueError:
+        return render_template('Prototype.html')
     if request.form['btn_identifier'] == 'get_wordcloud':
         print("wordcloud button is hit")
-        get_wordcloud(STOP_WORDS,lda_model)
-        return render_template('untitled1.html', name = 'Topic Wordcloud', url ='/static/images/wordcloud_topicwise.png')
+        try:
+            get_wordcloud(STOP_WORDS,lda_model)
+            return render_template('untitled1.html', name = 'Topic Wordcloud', url ='/static/images/wordcloud_topicwise.png')
+        except ValueError:
+            return render_template('Prototype.html')
+        
     if request.form['btn_identifier'] == 'get_topics':
         print("Topic Button is hit")
-        get_barplot(lda_model,doc_list)
-        return render_template('untitled1.html', name = 'Topic_Barplot', url ='/static/images/topic_barplot.png')
+        try:
+            get_barplot(lda_model,doc_list)
+            return render_template('untitled1.html', name = 'Topic_Barplot', url ='/static/images/topic_barplot.png')
+        except ValueError:
+            return render_template('Prototype.html')
+        
+        
     
     
 

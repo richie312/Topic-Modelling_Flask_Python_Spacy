@@ -31,7 +31,7 @@ def get_topics(url):
     
     text_list = [list_text[i].text.strip() for i in range(len(list_text))]
     
-    nlp= spacy.load("en")
+    nlp= spacy.load("en_core_web_lg")
     
     # My list of stop words.
     stop_list = ["Mrs.","Ms.","say","WASHINGTON","'s","Mr.",]
@@ -78,7 +78,7 @@ def get_topics(url):
     
     lda_model = gensim.models.ldamodel.LdaModel(corpus=corpus,
                                                id2word=words,
-                                               num_topics=5, 
+                                               num_topics=4, 
                                                random_state=2,
                                                update_every=1,
                                                passes=10,

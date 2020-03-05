@@ -1,0 +1,1 @@
+/home/cnadmin/nlp/nlp/bin/Activate.sh
